@@ -26,6 +26,6 @@ bool remove_hash_element(int key);
 bool search_hash_tab(int key, int* value);
 
 //destroy hash table
-void destroy_hash_table();
+void destroy_hash_tab();
 
 #endif

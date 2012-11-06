@@ -82,8 +82,8 @@ static void remove_list(pnode head){
     }
 }
 
-static pnode                hash_table;     //pointer to hash bable
-static int                  hash_size;      //hash table size
+static pnode        hash_table = NULL;      //pointer to hash bable
+static int          hash_size;              //hash table size
 
 //count hash value
 static int hash_value(int key){
@@ -92,6 +92,10 @@ static int hash_value(int key){
 
 //creat hash table
 bool init_hash_tab(int size){
+    if(NULL != hash_table){
+        return false;
+    }
+    
     hash_size = size;
     hash_table = malloc(sizeof(node) * hash_size);
     if(NULL == hash_table){
@@ -104,7 +108,11 @@ bool init_hash_tab(int size){
 }
 
 //destroy hash table
-void destroy_hash_table(){
+void destroy_hash_tab(){
+    if(NULL == hash_table){
+        return ;
+    }
+    
     for (int i = 0; hash_size > i; i++) {//free hash table list
         TRACE("remove hash table list,\t\t hash=%d,\t head=%p,\t null=%d \n",
               i, hash_table[i].next, 0);
@@ -113,6 +121,7 @@ void destroy_hash_table(){
     TRACE("destroy hash table,\t\t addr=%p,\t null=%d,\t null=%d \n",
           hash_table, 0, 0);
     free(hash_table);//free hash table
+    hash_table = NULL;
 }
 
 //add element to hash table

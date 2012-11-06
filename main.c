@@ -48,7 +48,7 @@ int main(int argc, const char * argv[])
     remove_hash_element(19);
     remove_hash_element(8);
     
-    destroy_hash_table();
+    destroy_hash_tab();
     
     return 0;
 }
